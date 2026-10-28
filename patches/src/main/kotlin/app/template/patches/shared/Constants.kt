@@ -17,6 +17,4 @@ object Constants {
         )
     )
 
-    // Kept for the template's example patch so the starter source remains compilable.
-    val COMPATIBILITY_EXAMPLE = COMPATIBILITY_GBOARD_18_5_4
 }
