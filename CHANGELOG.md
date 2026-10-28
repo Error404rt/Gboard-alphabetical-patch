@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/Error404rt/Gboard-alphabetical-patch/compare/v1.0.1...v1.0.2) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* create alphabetical resources through Morphe resource pipeline ([d8a9d27](https://github.com/Error404rt/Gboard-alphabetical-patch/commit/d8a9d2702ae26a66487471206d57296417d3bdcd))
+
 ## [1.0.1](https://github.com/Error404rt/Gboard-alphabetical-patch/compare/v1.0.0...v1.0.1) (2026-10-28)
 
 ### 🐛 Bug Fixes
