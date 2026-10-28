@@ -130,7 +130,7 @@ private fun englishMain(): String = """
 """.trimIndent()
 
 context(context: ResourcePatchContext)
-private fun write(path: String, text: String) = context.get("$XML_DIR/$path", true).writeText(text)
+private fun write(path: String, text: String) = context.get("$XML_DIR/$path", false).writeText(text)
 
 context(context: ResourcePatchContext)
 private fun applyPatch() {
