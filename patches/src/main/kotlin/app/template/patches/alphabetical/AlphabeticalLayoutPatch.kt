@@ -132,6 +132,36 @@ private fun englishMain(): String = """
 context(context: ResourcePatchContext)
 private fun write(path: String, text: String) = context.get("$XML_DIR/$path", true).writeText(text)
 
+context(context: ResourcePatchContext)
+private fun applyPatch() {
+    write("alphabetical_en_softkeys.xml", softkeys(english))
+    write("alphabetical_en_keymap.xml", keymap(english, listOf(10, 9, 7)))
+    write("alphabetical_en_main.xml", englishMain())
+    write("alphabetical_ru_softkeys.xml", softkeys(russian))
+    write("alphabetical_ru_keymap.xml", keymap(russian, listOf(11, 11, 8)))
+    write("alphabetical_ru_main.xml", russianMain())
+
+    val englishIme = context.get(ENGLISH_IME, true)
+    var englishText = englishIme.readText()
+    if ("@xml/alphabetical_en_main" !in englishText) {
+        englishText = englishText.replace(
+            "</ime>",
+            "        <include href=\"@xml/APKTOOL_RENAMED_0x7f1706bd\" main_def=\"@xml/alphabetical_en_main\" pk_language_tag=\"en-Latn-US\" support_a11y_keyboard=\"true\" variant=\"alphabetical\" variant_label=\"ABCD\" />\n    </ime>"
+        )
+        englishIme.writeText(englishText)
+    }
+
+    val russianIme = context.get(RUSSIAN_IME, true)
+    var russianText = russianIme.readText()
+    if ("@xml/alphabetical_ru_main" !in russianText) {
+        russianText = russianText.replace(
+            "</ime>",
+            "        <include href=\"@xml/APKTOOL_RENAMED_0x7f1706bd\" main_def=\"@xml/alphabetical_ru_main\" pk_language_tag=\"ru\" support_a11y_keyboard=\"true\" variant=\"alphabetical\" variant_label=\"ABCD\" />\n    </ime>"
+        )
+        russianIme.writeText(russianText)
+    }
+}
+
 @Suppress("unused")
 val alphabeticalLayoutPatch = resourcePatch(
     name = "Alphabetical Gboard layouts",
@@ -139,32 +169,5 @@ val alphabeticalLayoutPatch = resourcePatch(
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_GBOARD_18_5_4)
-    finalize {
-        write("alphabetical_en_softkeys.xml", softkeys(english))
-        write("alphabetical_en_keymap.xml", keymap(english, listOf(10, 9, 7)))
-        write("alphabetical_en_main.xml", englishMain())
-        write("alphabetical_ru_softkeys.xml", softkeys(russian))
-        write("alphabetical_ru_keymap.xml", keymap(russian, listOf(11, 11, 8)))
-        write("alphabetical_ru_main.xml", russianMain())
-
-        val englishIme = context.get(ENGLISH_IME, true)
-        var englishText = englishIme.readText()
-        if ("@xml/alphabetical_en_main" !in englishText) {
-            englishText = englishText.replace(
-                "</ime>",
-                "        <include href=\"@xml/APKTOOL_RENAMED_0x7f1706bd\" main_def=\"@xml/alphabetical_en_main\" pk_language_tag=\"en-Latn-US\" support_a11y_keyboard=\"true\" variant=\"alphabetical\" variant_label=\"ABCD\" />\n    </ime>"
-            )
-            englishIme.writeText(englishText)
-        }
-
-        val russianIme = context.get(RUSSIAN_IME, true)
-        var russianText = russianIme.readText()
-        if ("@xml/alphabetical_ru_main" !in russianText) {
-            russianText = russianText.replace(
-                "</ime>",
-                "        <include href=\"@xml/APKTOOL_RENAMED_0x7f1706bd\" main_def=\"@xml/alphabetical_ru_main\" pk_language_tag=\"ru\" support_a11y_keyboard=\"true\" variant=\"alphabetical\" variant_label=\"ABCD\" />\n    </ime>"
-            )
-            russianIme.writeText(russianText)
-        }
-    }
+    finalize { applyPatch() }
 }
