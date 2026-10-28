@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/Error404rt/Gboard-alphabetical-patch/compare/v1.0.0...v1.0.1) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* remove template example patch ([a914371](https://github.com/Error404rt/Gboard-alphabetical-patch/commit/a9143712fdfd85c637faef45055c34df59bde63b))
+
 ## 1.0.0 (2026-10-28)
 
 ### 🐛 Bug Fixes

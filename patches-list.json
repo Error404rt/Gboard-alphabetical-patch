@@ -1,37 +1,10 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "patches": [
     {
       "name": "Alphabetical Gboard layouts",
       "description": "Adds ABCD English and Russian layouts; Russian uses Е→Ё, И→Й and Ь→Ъ on long press.",
-      "default": true,
-      "category": null,
-      "compatiblePackages": [
-        {
-          "packageName": "com.google.android.inputmethod.latin",
-          "name": "Gboard",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1A73E8",
-          "signatures": null,
-          "formFactor": "MOBILE",
-          "targets": [
-            {
-              "version": "18.5.4.993608717-release-arm64-v8a",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Example Patch",
-      "description": "Example patch to start with.",
       "default": true,
       "category": null,
       "compatiblePackages": [
